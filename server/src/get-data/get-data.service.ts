@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import axios, { AxiosRequestConfig } from 'axios';
+import axios from 'axios';
 import { parse } from 'node-html-parser';
+import IProductUnit from './interfaces/iProductUnit';
 
 @Injectable()
 export class GetDataService {
@@ -23,11 +24,16 @@ export class GetDataService {
     console.log(
       root.querySelector('.pagination')?.querySelectorAll('li').length,
     );
-    
+
+    const products: IProductUnit[] = [];
+
     root.querySelectorAll('form.category-list-item').forEach((item) => {
-      console.log(item.querySelector('.product-title')?.innerText);
-      console.log(item.querySelector('.ty-previewer')?.attrs.href);
-      console.log(item.querySelector('.ty-price-num')?.innerText);
+      const product: IProductUnit = {
+        imgUrl: item.querySelector('.ty-previewer')?.attrs.href,
+        name: item.querySelector('.product-title')?.innerText,
+        price: item.querySelector('.ty-price-num')?.innerText,
+      };
+      products.push(product)
     });
 
     const list = root.querySelectorAll('form.category-list-item');
