@@ -9,9 +9,10 @@ export class GetDataService {
     let config = {
       params: {
         search_performed: 'Y',
-        q: '16gb perfeo',
+        q: 'perfeo',
         dispatch: 'products.search',
-        page: '2',
+        items_per_page: 10000,
+        // page: '2',
       },
       headers: {
         cookie: 'sid_customer_733c5=1b089ec0915b3f3a39e8d595e231def0-1-C',
@@ -22,7 +23,9 @@ export class GetDataService {
 
     const root = parse(res.data);
     console.log(
-      root.querySelector('.pagination')?.querySelectorAll('li').length,
+      root.querySelector('.pagination')?.querySelectorAll('li').forEach((item) => {
+        console.log(item.innerText);
+      }),
     );
 
     const products: IProductUnit[] = [];
@@ -35,9 +38,11 @@ export class GetDataService {
       };
       products.push(product)
     });
+    console.log('products count ', products.length);
 
-    const list = root.querySelectorAll('form.category-list-item');
-    return list?.toString();
+    // const list = root.querySelectorAll('form.category-list-item');
+    // return list?.toString();
     // return res.data;
+    return JSON.stringify(products);
   }
 }
