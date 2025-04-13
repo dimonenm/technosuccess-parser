@@ -9,7 +9,7 @@ export class GetDataService {
     let config = {
       params: {
         search_performed: 'Y',
-        q: 'perfeo',
+        q: 'Настенные perfeo',
         dispatch: 'products.search',
         items_per_page: 10000,
         // page: '2',
