@@ -9,13 +9,14 @@ export class GetDataService {
     let config = {
       params: {
         search_performed: 'Y',
-        q: 'Настенные perfeo',
+        q: 'perfeo',
         dispatch: 'products.search',
         items_per_page: 10000,
         // page: '2',
       },
       headers: {
-        cookie: 'sid_customer_733c5=1b089ec0915b3f3a39e8d595e231def0-1-C',
+        // cookie: 'sid_customer_733c5=1b089ec0915b3f3a39e8d595e231def0-1-C',
+        cookie: 'sid_customer_733c5=88bac409508a9f80fce471379d9aec4d-1-C',
       },
     };
 
