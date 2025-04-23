@@ -5,7 +5,8 @@ import MainTable from './ui/table'
 
 export default function Home() {
   return (
-    <div className={styles.page}>
+    // <div className={styles.page}>
+    <div className='container '>
       <Buttons />
       <MainTable />
     </div>
