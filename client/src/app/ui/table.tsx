@@ -8,7 +8,7 @@ import {
   TableCell,
   getKeyValue,
 } from '@heroui/table'
-import { Input } from '@heroui/react'
+import { Input, Image } from '@heroui/react'
 
 const columns = [
   {
@@ -79,12 +79,22 @@ export default function MainTable() {
       </TableHeader>
       <TableBody items={rows}>
         {item => {
-					console.log('item: ', item);
+          console.log('item: ', item)
           return (
             <TableRow key={item.key}>
-              {columnKey => {
+              {/* {columnKey => {
+                console.log('columnKey: ', columnKey);
                 return <TableCell>{getKeyValue(item, columnKey)}</TableCell>
-              }}
+              }} */}
+              <TableCell>
+                <Image
+                  alt={item.name}
+                  src={item.imgUrl}
+                  width={100}
+                />
+              </TableCell>
+              <TableCell>{item.name}</TableCell>
+              <TableCell>{item.price}</TableCell>
             </TableRow>
           )
         }}
