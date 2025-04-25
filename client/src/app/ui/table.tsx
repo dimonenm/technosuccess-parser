@@ -6,9 +6,8 @@ import {
   TableColumn,
   TableRow,
   TableCell,
-  getKeyValue,
 } from '@heroui/table'
-import { Input, Image } from '@heroui/react'
+import { Image } from '@heroui/react'
 
 const columns = [
   {
@@ -71,7 +70,7 @@ const rows = [
 
 export default function MainTable() {
   return (
-    <Table aria-label='Example table with dynamic content'>
+    <Table aria-label='Example table with dynamic content' className='w-2/3'>
       <TableHeader columns={columns}>
         {column => {
           return <TableColumn key={column.key}>{column.label}</TableColumn>
@@ -82,10 +81,6 @@ export default function MainTable() {
           console.log('item: ', item)
           return (
             <TableRow key={item.key}>
-              {/* {columnKey => {
-                console.log('columnKey: ', columnKey);
-                return <TableCell>{getKeyValue(item, columnKey)}</TableCell>
-              }} */}
               <TableCell>
                 <Image
                   alt={item.name}
@@ -100,10 +95,5 @@ export default function MainTable() {
         }}
       </TableBody>
     </Table>
-
-    // <div className='flex w-full flex-wrap md:flex-nowrap gap-4'>
-    //   <Input label='Email' type='email' />
-    //   <Input label='Email' placeholder='Enter your email' type='email' />
-    // </div>
   )
 }
