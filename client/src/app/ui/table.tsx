@@ -70,7 +70,7 @@ const rows = [
 
 export default function MainTable() {
   return (
-    <Table aria-label='Example table with dynamic content' className='w-2/3'>
+    <Table aria-label='Example table with dynamic content' className='min-w-fit'>
       <TableHeader columns={columns}>
         {column => {
           return <TableColumn key={column.key}>{column.label}</TableColumn>

@@ -16,18 +16,19 @@ export class GetDataService {
       },
       headers: {
         // cookie: 'sid_customer_733c5=1b089ec0915b3f3a39e8d595e231def0-1-C',
-        cookie: 'sid_customer_733c5=88bac409508a9f80fce471379d9aec4d-1-C',
+        // cookie: 'sid_customer_733c5=88bac409508a9f80fce471379d9aec4d-1-C',
+        cookie: 'sid_customer_733c5=2e7a0f656f8f07ceff452ce4c831ad8e-1-C',
       },
     };
 
     const res = await axios.get('https://technosuccess.ru', config);
 
     const root = parse(res.data);
-    console.log(
-      root.querySelector('.pagination')?.querySelectorAll('li').forEach((item) => {
-        console.log(item.innerText);
-      }),
-    );
+    // console.log(
+    //   root.querySelector('.pagination')?.querySelectorAll('li').forEach((item) => {
+    //     console.log(item.innerText);
+    //   }),
+    // );
 
     const products: IProductUnit[] = [];
 
