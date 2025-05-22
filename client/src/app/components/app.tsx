@@ -10,13 +10,12 @@ interface AppProps {
   count: number
 }
 
-export default function App({ count }: AppProps) {
+export default function App() {
   const [products, setProducts] = useState<IProductUnit[]>()
-  console.log('App count ',count = count + 10)
 
   return (
     <div className='container mx-auto'>
-      <Buttons count={count} />
+      <Buttons />
       {/* <MainTable products={products} /> */}
     </div>
   )

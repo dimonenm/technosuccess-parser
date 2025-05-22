@@ -13,16 +13,9 @@ async function GetProducts() {
 }
 
 export default async function Home() {
-
-  let count = 0
-
-  setInterval(() => {
-    console.log('Home count', count)
-  }, 5000)
   
-
   return (
-    <App count={count} />
+    <App />
     // <div className='container mx-auto'>
     //   <Buttons />
     //   <MainTable products={products} />
