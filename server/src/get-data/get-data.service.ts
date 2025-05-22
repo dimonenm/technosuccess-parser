@@ -9,14 +9,12 @@ export class GetDataService {
     let config = {
       params: {
         search_performed: 'Y',
-        q: 'perfeo',
+        q: 'Perfeo USB 16GB C01G2',
         dispatch: 'products.search',
         items_per_page: 10000,
         // page: '2',
       },
       headers: {
-        // cookie: 'sid_customer_733c5=1b089ec0915b3f3a39e8d595e231def0-1-C',
-        // cookie: 'sid_customer_733c5=88bac409508a9f80fce471379d9aec4d-1-C',
         cookie: 'sid_customer_733c5=2e7a0f656f8f07ceff452ce4c831ad8e-1-C',
       },
     };
@@ -24,16 +22,12 @@ export class GetDataService {
     const res = await axios.get('https://technosuccess.ru', config);
 
     const root = parse(res.data);
-    // console.log(
-    //   root.querySelector('.pagination')?.querySelectorAll('li').forEach((item) => {
-    //     console.log(item.innerText);
-    //   }),
-    // );
 
     const products: IProductUnit[] = [];
 
-    root.querySelectorAll('form.category-list-item').forEach((item) => {
+    root.querySelectorAll('form.category-list-item').forEach((item, index) => {
       const product: IProductUnit = {
+        key: String(index),
         imgUrl: item.querySelector('.ty-previewer')?.attrs.href,
         name: item.querySelector('.product-title')?.innerText,
         price: item.querySelector('.ty-price-num')?.innerText,
