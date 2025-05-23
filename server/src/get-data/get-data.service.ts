@@ -3,6 +3,19 @@ import axios from 'axios';
 import { parse } from 'node-html-parser';
 import IProductUnit from './interfaces/iProductUnit';
 
+function fixText(oldProducts: IProductUnit[]): IProductUnit[] {
+  const newProducts: IProductUnit[] = oldProducts.map((product) => {
+    const newProduct: IProductUnit = {
+      key: product.key,
+      imgUrl: product.imgUrl,
+      name: product.name?.replaceAll('&quot;', '"'),
+      price: product.price?.replaceAll('&nbsp;', ''),
+    };
+    return newProduct
+  });
+  return newProducts
+}
+
 @Injectable()
 export class GetDataService {
   async getData() {
@@ -36,7 +49,7 @@ export class GetDataService {
     });
     console.log('products count ', products.length);
 
-    return JSON.stringify(products);
+    return JSON.stringify(fixText(products))
   }
 
   async getDataBySearchQuery(searchQuery: string) {
@@ -70,6 +83,6 @@ export class GetDataService {
     });
     console.log('products count ', products.length);
 
-    return JSON.stringify(products);
+    return JSON.stringify(fixText(products))
   }
 }
