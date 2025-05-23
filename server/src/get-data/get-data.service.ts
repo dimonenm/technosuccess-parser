@@ -32,13 +32,44 @@ export class GetDataService {
         name: item.querySelector('.product-title')?.innerText,
         price: item.querySelector('.ty-price-num')?.innerText,
       };
-      products.push(product)
+      products.push(product);
     });
     console.log('products count ', products.length);
 
-    // const list = root.querySelectorAll('form.category-list-item');
-    // return list?.toString();
-    // return res.data;
+    return JSON.stringify(products);
+  }
+
+  async getDataBySearchQuery(searchQuery: string) {
+
+    let config = {
+      params: {
+        search_performed: 'Y',
+        q: searchQuery,
+        dispatch: 'products.search',
+        items_per_page: 10000,
+      },
+      headers: {
+        cookie: 'sid_customer_733c5=2e7a0f656f8f07ceff452ce4c831ad8e-1-C',
+      },
+    };
+
+    const res = await axios.get('https://technosuccess.ru', config);
+
+    const root = parse(res.data);
+
+    const products: IProductUnit[] = [];
+
+    root.querySelectorAll('form.category-list-item').forEach((item, index) => {
+      const product: IProductUnit = {
+        key: String(index),
+        imgUrl: item.querySelector('.ty-previewer')?.attrs.href,
+        name: item.querySelector('.product-title')?.innerText,
+        price: item.querySelector('.ty-price-num')?.innerText,
+      };
+      products.push(product);
+    });
+    console.log('products count ', products.length);
+
     return JSON.stringify(products);
   }
 }

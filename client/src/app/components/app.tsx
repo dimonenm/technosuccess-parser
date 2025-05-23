@@ -21,7 +21,7 @@ export default function App() {
 		const getData = async () => {
 			setProducts(await GetProducts())
 		}
-		getData()
+		// getData()
   }, [])
 
   return (

@@ -2,10 +2,14 @@
 import { Button, Input } from '@heroui/react'
 import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react'
 import IProductUnit from '../interfaces/iProductUnit'
-import { GetProducts } from './../actions/getProducts'
+import { GetProducts, getDataBySearchQuery } from './../actions/getProducts'
 
 interface ButtonsProps {
   setProducts: Dispatch<SetStateAction<IProductUnit[]>>
+}
+
+function ClearProducts(setProducts: Dispatch<SetStateAction<IProductUnit[]>>) {
+  setProducts([])
 }
 
 export default function Buttons({ setProducts }: ButtonsProps) {
@@ -31,14 +35,20 @@ export default function Buttons({ setProducts }: ButtonsProps) {
           <Button
             color='default'
             onPress={async () => {
-              // const data = await GetProducts()
-              // console.log('data: ', data)
               setProducts(await GetProducts())
             }}
           >
             Increment
           </Button>
-          <Button color='primary'>Decrement</Button>
+          <Button
+            color='primary'
+            onPress={async () => {
+              ClearProducts(setProducts)
+              setProducts(await getDataBySearchQuery(searchQuery.split(' ')))
+            }}
+          >
+            Decrement
+          </Button>
         </div>
       </div>
     </>
