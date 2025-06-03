@@ -28,7 +28,7 @@ export class GetDataService {
         // page: '2',
       },
       headers: {
-        cookie: 'sid_customer_733c5=2e7a0f656f8f07ceff452ce4c831ad8e-1-C',
+        cookie: 'sid_customer_733c5=a6640fadc4161af7dc5dd92f3c35d5e2-1-C',
       },
     };
 
