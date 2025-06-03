@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import styles from './styles/page.module.css'
+// import styles from './styles/page.module.css'
 import Buttons from './ui/buttons'
 import MainTable from './ui/table'
 import IProductUnit from './interfaces/iProductUnit'
@@ -9,9 +9,5 @@ export default async function Home() {
 
   return (
     <App />
-    // <div className='container mx-auto'>
-    //   <Buttons />
-    //   <MainTable products={products} />
-    // </div>
   )
 }
