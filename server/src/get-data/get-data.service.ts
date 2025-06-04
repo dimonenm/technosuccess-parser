@@ -22,10 +22,9 @@ export class GetDataService {
     let config = {
       params: {
         search_performed: 'Y',
-        q: 'Perfeo USB 16GB C01G2',
+        // q: 'Perfeo USB 16GB C01G2',
         dispatch: 'products.search',
         items_per_page: 10000,
-        // page: '2',
       },
       headers: {
         cookie: 'sid_customer_733c5=a6640fadc4161af7dc5dd92f3c35d5e2-1-C',
