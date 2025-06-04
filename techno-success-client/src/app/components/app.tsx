@@ -11,9 +11,9 @@ export default function App() {
 
 	return (
     <div className='flex flex-col justify-center w-3xl mx-auto'>
-			<SearchInput setProducts={setProducts} />
+      <SearchInput setProducts={setProducts} />
       <FilterInput />
-      <TableComp />
+      <TableComp products={products} />
     </div>
   )
 }
