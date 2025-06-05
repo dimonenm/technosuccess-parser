@@ -11,20 +11,31 @@ function fixText(oldProducts: IProductUnit[]): IProductUnit[] {
       name: product.name?.replaceAll('&quot;', '"'),
       price: product.price?.replaceAll('&nbsp;', ''),
     };
-    return newProduct
+    return newProduct;
   });
-  return newProducts
+  return newProducts;
 }
 
 @Injectable()
 export class GetDataService {
   async getData() {
+    // let config = {
+    //   params: {
+    //     search_performed: 'Y',
+    //     q: 'Perfeo USB 16GB C01G2',
+    //     dispatch: 'products.search',
+    //     items_per_page: 10000,
+    //   },
+    //   headers: {
+    //     cookie: 'sid_customer_733c5=a6640fadc4161af7dc5dd92f3c35d5e2-1-C',
+    //   },
+    // };
     let config = {
       params: {
         search_performed: 'Y',
-        // q: 'Perfeo USB 16GB C01G2',
+        q: 'Perfeo USB 16GB C01G2',
         dispatch: 'products.search',
-        items_per_page: 10000,
+        items_per_page: 100,
       },
       headers: {
         cookie: 'sid_customer_733c5=a6640fadc4161af7dc5dd92f3c35d5e2-1-C',
@@ -32,6 +43,27 @@ export class GetDataService {
     };
 
     const res = await axios.get('https://technosuccess.ru', config);
+
+    const res2 = await axios.post(
+      'https://technosuccess.ru',
+      {
+        price: 'cat_ids',
+        send_ids: ['7249227', '9241273'],
+      },
+      {
+        params: {
+          search_performed: 'Y',
+          q: 'Perfeo USB 16GB C01G2',
+          dispatch: 'products.search',
+          items_per_page: 100,
+        },
+        headers: {
+          accept: 'application/json, text/javascript, */*; q=0.01',
+          cookie: 'sid_customer_733c5=a6640fadc4161af7dc5dd92f3c35d5e2-1-C',
+        },
+      },
+    );
+    console.log('res2: ', res2);
 
     const root = parse(res.data);
 
@@ -48,11 +80,10 @@ export class GetDataService {
     });
     console.log('products count ', products.length);
 
-    return JSON.stringify(fixText(products))
+    return JSON.stringify(fixText(products));
   }
 
   async getDataBySearchQuery(searchQuery: string) {
-
     let config = {
       params: {
         search_performed: 'Y',
@@ -82,6 +113,6 @@ export class GetDataService {
     });
     console.log('products count ', products.length);
 
-    return JSON.stringify(fixText(products))
+    return JSON.stringify(fixText(products));
   }
 }

@@ -18,7 +18,6 @@ interface TableCompProps {
 }
 
 export default function TableComp({ products }: TableCompProps) {
-  console.log('products: ', products);
 
   if (products.length === 0) {
     return <div>no results</div>
