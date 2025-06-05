@@ -2,7 +2,7 @@ import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react'
 import IProductUnit from '../interfaces/iProductUnit'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { GetProducts } from '../actions/getProducts'
+import { GetDataBySearchQuery } from '../actions/getProducts'
 
 interface SearchInputProps {
   setProducts: Dispatch<SetStateAction<IProductUnit[]>>
@@ -26,7 +26,7 @@ export default function SearchInput({ setProducts }: SearchInputProps) {
         size={'default'}
         className='bg-neutral-600 border-b-black border-2 hover:bg-neutral-300 transition-colors delay-75 ease-in-out'
         onClick={async () => {
-          setProducts(await GetProducts())
+          setProducts(await GetDataBySearchQuery(searchQuery.split(' ')))
         }}
       >
         Search

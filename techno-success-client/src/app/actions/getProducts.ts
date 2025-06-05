@@ -21,20 +21,22 @@ export async function GetProducts() {
   return products
 }
 
-export async function getDataBySearchQuery(searchQuery: string[]) {
+export async function GetDataBySearchQuery(searchQuery: string[]) {
   let params: string = ''
   const products: IProductUnit[] = []
 
   if (searchQuery[0] === '') {
-    const data = GetProductsRawData()
+    throw new Error("fild is empty");
+     
+    // const data = GetProductsRawData()
 
-    await data.then(res => {
-      res.map(iProductUnit => {
-        products.push(iProductUnit)
-      })
-    })
+    // await data.then(res => {
+    //   res.map(iProductUnit => {
+    //     products.push(iProductUnit)
+    //   })
+    // })
 
-    return products
+    // return products
   }
 
   searchQuery.forEach(str => {
