@@ -14,4 +14,9 @@ export class GetDataController {
   getDatabySearchQuery(@Query('q') searchQuery: string) {
     return this.getDataService.getDataBySearchQuery(searchQuery);
   }
+
+  @Get('exp')
+  getDataExp(@Query('q') searchQuery: string) {
+    return this.getDataService.getJSONData_experimental();
+  }
 }

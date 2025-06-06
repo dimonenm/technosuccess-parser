@@ -149,6 +149,6 @@ export class GetDataService {
       config2,
     );
 
-    console.log('res2.data.product_data: ', res2.data.product_data);
+    return res2.data;
   }
 }
