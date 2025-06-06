@@ -18,6 +18,7 @@ interface TableCompProps {
 }
 
 export default function TableComp({ products }: TableCompProps) {
+  console.log('products in TableComp: ', products)
 
   if (products.length === 0) {
     return <div>no results</div>
@@ -27,23 +28,23 @@ export default function TableComp({ products }: TableCompProps) {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className='w-40'>Image</TableHead>
+              <TableHead>Image</TableHead>
               <TableHead>Name</TableHead>
               <TableHead className='text-right'>Price</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {products.map(item => (
-              <TableRow key={item.key} className='h-40'>
+              <TableRow key={item.key}>
                 <TableCell>
                   <Image
                     src={`${item.imgUrl}`}
                     alt={`${item.key}`}
-                    width={150}
-                    height={150}
+                    width={75}
+                    height={75}
                   ></Image>
                 </TableCell>
-                <TableCell>{item.name}</TableCell>
+                <TableCell className='whitespace-normal'>{item.name}</TableCell>
                 <TableCell className='text-right'>{item.price}</TableCell>
               </TableRow>
             ))}
@@ -51,7 +52,7 @@ export default function TableComp({ products }: TableCompProps) {
           <TableFooter>
             <TableRow>
               <TableCell colSpan={2}>Total</TableCell>
-              <TableCell className='text-right'>$2,500.00</TableCell>
+              <TableCell className='text-right'>{products.length}</TableCell>
             </TableRow>
           </TableFooter>
         </Table>

@@ -57,10 +57,10 @@ export class GetDataService {
         search_performed: 'Y',
         q: searchQuery,
         dispatch: 'products.search',
-        items_per_page: 100,
+        items_per_page: 1000,
       },
       headers: {
-        cookie: 'sid_customer_733c5=2e7a0f656f8f07ceff452ce4c831ad8e-1-C',
+        cookie: 'sid_customer_733c5=a6640fadc4161af7dc5dd92f3c35d5e2-1-C',
       },
     };
 
@@ -71,9 +71,17 @@ export class GetDataService {
     const products: IProductUnit[] = [];
 
     root.querySelectorAll('form.category-list-item').forEach((item, index) => {
+      const imgUrl = item.querySelector('.ty-previewer')?.attrs.href
+        ? item.querySelector('.ty-previewer')?.attrs.href
+        : 'https://technosuccess.ru/images/noimage/no-image-680x680.jpg';
+
+      if (!item.querySelector('.ty-price-num')?.innerText) {
+        throw new Error('price is empty');
+      }
+
       const product: IProductUnit = {
         key: String(index),
-        imgUrl: item.querySelector('.ty-previewer')?.attrs.href,
+        imgUrl: imgUrl,
         name: item.querySelector('.product-title')?.innerText,
         price: item.querySelector('.ty-price-num')?.innerText,
       };
@@ -142,5 +150,5 @@ export class GetDataService {
     );
 
     console.log('res2.data.product_data: ', res2.data.product_data);
-  };
+  }
 }

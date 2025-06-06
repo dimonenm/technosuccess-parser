@@ -6,9 +6,10 @@ import { GetDataBySearchQuery } from '../actions/getProducts'
 
 interface SearchInputProps {
   setProducts: Dispatch<SetStateAction<IProductUnit[]>>
+  setLoading: Dispatch<SetStateAction<boolean>>
 }
 
-export default function SearchInput({ setProducts }: SearchInputProps) {
+export default function SearchInput({ setProducts, setLoading }: SearchInputProps) {
   const [searchQuery, setSearchQuery] = useState<string>('')
 
   return (
@@ -26,6 +27,7 @@ export default function SearchInput({ setProducts }: SearchInputProps) {
         size={'default'}
         className='bg-neutral-600 border-b-black border-2 hover:bg-neutral-300 transition-colors delay-75 ease-in-out'
         onClick={async () => {
+          setLoading(true)
           setProducts(await GetDataBySearchQuery(searchQuery.split(' ')))
         }}
       >
